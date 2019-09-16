@@ -1,7 +1,7 @@
 let assert = require("assert");
 const setBill = require("../settingFact");
 
-describe('The greet function', function () {
+describe('Setting-Bill function', function () {
 
     
 
