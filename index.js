@@ -17,8 +17,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
-    res.render('index'
-    )
+    res.render('index', {
+
+        setting: setFact.getData(),
+        totals: setFact.totals()
+    })
 })
 
 app.post('/settings', function (req, res) {
@@ -29,21 +32,25 @@ app.post('/settings', function (req, res) {
         warningLevel: req.body.warningLevel,
         criticalLevel: req.body.criticalLevel
     });
-    console.log(setFact.getData())
+
 
     res.redirect('/')
 
 })
 
 app.post('/action', function (req, res) {
+    setFact.add(req.body.billItemType)
+    res.redirect('/')
 
 })
 
 app.get('/actions', function (req, res) {
-
+    res.render('action', { actions: setFact.outPut() })
 })
 
-app.get('/actions/:type', function (req, res) {
+app.get('/actions/:myType', function (req, res) {
+    const myType = req.params.myType
+    res.render('action', { actions: setFact.filter(myType) })
 
 })
 

@@ -19,7 +19,7 @@ module.exports = function setBill() {
             callCost,
             smsCost,
             warningLevel,
-            criticalLevel,
+            criticalLevel
         }
     }
 
@@ -34,6 +34,7 @@ module.exports = function setBill() {
         list.push({
             type: action,
             cost,
+            timestamp:new Date()
            
         })
 
@@ -41,7 +42,6 @@ module.exports = function setBill() {
 
     function outPut() {
         return list
-
     }
 
     function filter(type) {
