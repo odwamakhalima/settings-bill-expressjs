@@ -25,16 +25,19 @@ module.exports = function setBill() {
 
     function add(action) {
         var cost = 0
+        if(!reachcri()){
         if (action === 'call') {
             cost += callCost
         }
         else if (action === 'sms') {
             cost += smsCost
         }
+    }
+    var moment = require('moment');
         list.push({
             type: action,
             cost,
-            timestamp:new Date()
+            time:moment().format()
            
         })
 
@@ -73,15 +76,18 @@ module.exports = function setBill() {
 
     function reachWarn() {
         var total = finalTotal()
-        var reachedWarning = total >= warningLevel && total < criticalLevel;
-        return reachedWarning
+        if(total >= warningLevel && total < criticalLevel){
+            return 'warning'
+        }
+        else if(total >= criticalLevel){
+            return 'danger'
+        }
+        
     }
 
-    function hasReachedCric() {
-        const total = finalTotal;
-        return total > criticalLevel
+    function reachcri() {
+        return finalTotal() >= criticalLevel
     }
-
 
     return {
         getData,
@@ -93,6 +99,7 @@ module.exports = function setBill() {
         finalTotal,
         totals,
         reachWarn,
-        hasReachedCric,
+        reachcri
+      
     }
 }

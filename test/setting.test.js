@@ -30,6 +30,8 @@ describe('Setting-Bill function', function () {
 
         var setFact = setBill()
 
+        var moment = require('moment');
+
         setFact.data({
             callCost: 7,
             smsCost: 5,
@@ -39,17 +41,20 @@ describe('Setting-Bill function', function () {
 
         setFact.add('call')
         setFact.add('sms')
+       
 
         assert.deepEqual([{
             type: 'call',
             cost:7,
-            timestamp: new Date()
+            time: moment().format(),
+            
         },{
             type: 'sms',
             cost:5,
-            timestamp: new Date()
+            time: moment().format(),
+            
         }], setFact.outPut());
-    });
+    });new Date()
 
     var setFact = setBill()
 
@@ -97,7 +102,7 @@ describe('Setting-Bill function', function () {
             warningLevel: 20,
             criticalLevel: 30,
         })
-
+      
         setFact.add('sms')
         setFact.add('call')
         setFact.add('sms')
@@ -108,7 +113,8 @@ describe('Setting-Bill function', function () {
         setFact.add('call')
      
 
-        assert.deepEqual(48, setFact.finalTotal());
+        assert.deepEqual(36, setFact.finalTotal());
+        var col = setFact.reachWarn()
     });
 
     it('should return total for calls,sms and final total when calls and sms are added', function () {
@@ -133,9 +139,9 @@ describe('Setting-Bill function', function () {
      
 
         assert.deepEqual({
-            callTotal:28,
-            smsTotal:20,
-            finalTotal:48
+            callTotal:21,
+            smsTotal:15,
+            finalTotal:36
         }, setFact.totals());
     });
 });

@@ -1,6 +1,7 @@
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
+
 const setBill = require('./settingFact')
 
 const setFact = setBill()
@@ -20,7 +21,8 @@ app.get('/', function (req, res) {
     res.render('index', {
 
         setting: setFact.getData(),
-        totals: setFact.totals()
+        totals: setFact.totals(),
+        level: setFact.reachWarn()
     })
 })
 
@@ -45,6 +47,7 @@ app.post('/action', function (req, res) {
 })
 
 app.get('/actions', function (req, res) {
+
     res.render('action', { actions: setFact.outPut() })
 })
 
