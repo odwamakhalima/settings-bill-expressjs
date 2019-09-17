@@ -25,14 +25,17 @@ module.exports = function setBill() {
 
     function add(action) {
         var cost = 0
-        if(!reachcri()){
+        if(reachcri()){
+            return "danger"
+        }
+        else if(!reachcri()){
         if (action === 'call') {
             cost += callCost
         }
         else if (action === 'sms') {
             cost += smsCost
         }
-    }
+    
     var moment = require('moment');
         list.push({
             type: action,
@@ -40,7 +43,7 @@ module.exports = function setBill() {
             time:moment().format()
            
         })
-
+    }
     }
 
     function outPut() {
