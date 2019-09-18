@@ -40,7 +40,7 @@ module.exports = function setBill() {
         list.push({
             type: action,
             cost,
-            time:moment().format()
+            time:moment(new Date()).fromNow()
            
         })
     }

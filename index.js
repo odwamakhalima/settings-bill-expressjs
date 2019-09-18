@@ -57,7 +57,7 @@ app.get('/actions/:myType', function (req, res) {
 
 })
 
-var PORT = process.env.PORT || 3007
+var PORT = process.env.PORT || 5000
 
 app.listen(PORT, function () {
     console.log('the server is running', PORT)
