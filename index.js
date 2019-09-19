@@ -3,6 +3,8 @@ var app = express()
 var bodyParser = require('body-parser')
 
 const setBill = require('./settingFact')
+var moment = require('moment');
+moment().format();
 
 const setFact = setBill()
 const exphbs = require('express-handlebars');
@@ -11,6 +13,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(express.static('public'))
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -47,8 +50,14 @@ app.post('/action', function (req, res) {
 })
 
 app.get('/actions', function (req, res) {
+    
+    var newList = setFact.outPut()
+    for(var i =0;i<newList.length;i++){
+         var times = newList[i]
+    }
+    times.myT = moment(times.time).fromNow()
 
-    res.render('action', { actions: setFact.outPut() })
+    res.render('action', { actions: newList,})
 })
 
 app.get('/actions/:myType', function (req, res) {
@@ -57,7 +66,7 @@ app.get('/actions/:myType', function (req, res) {
 
 })
 
-var PORT = process.env.PORT || 5000
+var PORT = process.env.PORT || 3000
 
 app.listen(PORT, function () {
     console.log('the server is running', PORT)

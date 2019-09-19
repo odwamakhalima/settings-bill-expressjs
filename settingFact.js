@@ -3,6 +3,29 @@ module.exports = function setBill() {
     var smsCost;
     var warningLevel;
     var criticalLevel;
+    var duration;
+    var moment = require('moment');
+    moment().format()
+
+    moment.updateLocale('en', {
+        relativeTime : {
+            future: "in %s",
+            past:   "%s ago",
+            s  : 'a few seconds',
+            ss : '%d seconds',
+            m:  "a minute",
+            mm: "%d minutes",
+            h:  "an hour",
+            hh: "%d hours",
+            d:  "a day",
+            dd: "%d days",
+            M:  "a month",
+            MM: "%d months",
+            y:  "a year",
+            yy: "%d years"
+        }
+    });
+
 
     var list = []
 
@@ -23,6 +46,8 @@ module.exports = function setBill() {
         }
     }
 
+
+
     function add(action) {
         var cost = 0
         if(reachcri()){
@@ -36,13 +61,17 @@ module.exports = function setBill() {
             cost += smsCost
         }
     
-    var moment = require('moment');
+
+   
+    //moment().format()
+    ;
         list.push({
             type: action,
             cost,
-            time:moment(new Date()).fromNow()
-           
+            time: moment().startOf('minutes').fromNow()
+            
         })
+     
     }
     }
 
@@ -103,6 +132,5 @@ module.exports = function setBill() {
         totals,
         reachWarn,
         reachcri
-      
     }
 }
