@@ -3,7 +3,6 @@ const setBill = require("../settingFact");
 
 describe('Setting-Bill function', function () {
 
-    
 
     it('should return callcost,smscost,warning level and critical level correctly', function () {
 
@@ -46,12 +45,12 @@ describe('Setting-Bill function', function () {
         assert.deepEqual([{
             type: 'call',
             cost:7,
-            time: "a few seconds ago",
+            time: new Date(),
             
         },{
             type: 'sms',
             cost:5,
-            time: "a few seconds ago",
+            time: new Date(),
             
         }], setFact.outPut());
     });new Date()
