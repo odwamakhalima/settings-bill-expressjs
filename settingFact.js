@@ -68,8 +68,8 @@ module.exports = function setBill() {
         list.push({
             type: action,
             cost,
-            time: moment().startOf('minutes').fromNow()
-            
+            time: new Date()
+
         })
      
     }

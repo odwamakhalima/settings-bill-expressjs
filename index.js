@@ -42,7 +42,6 @@ app.post('/settings', function (req, res) {
     res.redirect('/')
 
 })
-
 app.post('/action', function (req, res) {
     setFact.add(req.body.billItemType)
     res.redirect('/')
@@ -52,17 +51,20 @@ app.post('/action', function (req, res) {
 app.get('/actions', function (req, res) {
     
     var newList = setFact.outPut()
-    for(var i =0;i<newList.length;i++){
-         var times = newList[i]
+    for(var nList of newList){
+         nList.ago = moment(nList.time).fromNow()
     }
-    times.myT = moment(times.time).fromNow()
 
     res.render('action', { actions: newList,})
 })
 
 app.get('/actions/:myType', function (req, res) {
     const myType = req.params.myType
-    res.render('action', { actions: setFact.filter(myType) })
+        var newList = setFact.filter(myType)
+    for(var nList of newList){
+         nList.ago = moment(nList.time).fromNow()
+    }
+    res.render('action', { actions: newList })
 
 })
 
