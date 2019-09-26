@@ -3,7 +3,6 @@ module.exports = function setBill() {
     var smsCost;
     var warningLevel;
     var criticalLevel;
-    var duration;
     var moment = require('moment');
     moment().format()
 
@@ -45,8 +44,6 @@ module.exports = function setBill() {
             criticalLevel
         }
     }
-
-
 
     function add(action) {
         var cost = 0

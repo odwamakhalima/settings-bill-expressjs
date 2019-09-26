@@ -41,12 +41,11 @@ describe('Setting-Bill function', function () {
         setFact.add('call')
         setFact.add('sms')
        
-
         assert.deepEqual([{
             type: 'call',
             cost:7,
             time: new Date(),
-            
+   
         },{
             type: 'sms',
             cost:5,
