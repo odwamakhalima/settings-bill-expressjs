@@ -28,7 +28,12 @@ module.exports = function setBill() {
 
     var list = []
 
-
+    function data(input){
+         callCost = Number(input.callCost)
+         smsCost =  Number(input.smsCost)
+         warningLevel = Number(input.warningLevel)
+         criticalLevel = Number(input.criticalLevel)
+    }
 
     function getData() {
         return {
